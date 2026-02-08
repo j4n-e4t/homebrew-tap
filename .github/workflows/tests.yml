@@ -1,0 +1,20 @@
+name: tests
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  test-bot:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Homebrew
+        uses: Homebrew/actions/setup-homebrew@master
+
+      - name: Check out tap
+        uses: actions/checkout@v4
+
+      - name: Run brew test-bot
+        run: brew test-bot --only-tap-syntax
